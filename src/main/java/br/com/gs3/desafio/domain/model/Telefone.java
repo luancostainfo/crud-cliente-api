@@ -24,6 +24,18 @@ public class Telefone {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+    public void setNumeroTelefone(String numero) {
+        this.numeroTelefone = numero
+                .replace("(", "")
+                .replace(")", "")
+                .replace("-", "")
+                .replace(" ", "");
+    }
+
+    public String getNumeroTelefone() {
+        return numeroTelefone.replaceAll("(\\d{2})(\\d{4,5})(\\d{4})", "($1) $2-$3");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -14,6 +14,7 @@ public class ClienteRequest {
 
     @NotBlank
     @Size(min = 3, max = 100)
+    @Pattern(regexp = "^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ0-9_ ]*")
     private String nome;
 
     @NotBlank
