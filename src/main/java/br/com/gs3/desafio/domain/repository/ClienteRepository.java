@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
-    @EntityGraph(attributePaths = {"telefones", "emails", "endereco"})
+    @EntityGraph(attributePaths = {"endereco"})
     @Override
     List<Cliente> findAll();
 }

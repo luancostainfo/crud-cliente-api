@@ -47,4 +47,9 @@ public class ClienteController {
     public void deletar(@PathVariable Long id) {
         clienteService.deletar(id);
     }
+
+    @PutMapping("/{id}")
+    public ClienteResponse atualizar(@PathVariable Long id, @Valid @RequestBody ClienteRequest clienteRequest) {
+        return clienteService.atualizar(id, clienteRequest);
+    }
 }

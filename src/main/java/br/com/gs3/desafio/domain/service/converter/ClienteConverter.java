@@ -22,8 +22,8 @@ public class ClienteConverter implements RequestDisassembler<Cliente, ClienteReq
     @Override
     public Cliente toEntity(ClienteRequest request) {
 
-        var telefones = request.getTelefones().stream().map(telefoneConverter::toEntity).collect(Collectors.toSet());
-        var emails = request.getEmails().stream().map(emailConverter::toEntity).collect(Collectors.toSet());
+        var telefones = request.getTelefones().stream().map(telefoneConverter::toEntity).collect(Collectors.toList());
+        var emails = request.getEmails().stream().map(emailConverter::toEntity).collect(Collectors.toList());
         var endereco = enderecoConverter.toEntity(request.getEndereco());
 
         var cliente = new Cliente();

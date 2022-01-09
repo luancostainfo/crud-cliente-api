@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -44,6 +45,27 @@ public class ClienteService {
     public void deletar(Long id) {
         var cliente = getClientePorId(id);
         clienteRepository.delete(cliente);
+    }
+
+    @Transactional
+    public ClienteResponse atualizar(Long id, ClienteRequest clienteRequest) {
+
+        Optional<Cliente> clienteOptional = clienteRepository.findById(id);
+        var cliente = clienteConverter.toEntity(clienteRequest);
+
+        if (clienteOptional.isPresent()) {
+            Cliente finalCliente = cliente;
+            cliente.setId(id);
+            cliente.getEndereco().setCliente(cliente);
+            cliente.getTelefones().forEach(telefone -> telefone.setCliente(finalCliente));
+            cliente.getEmails().forEach(email -> email.setCliente(finalCliente));
+            cliente = clienteRepository.save(cliente);
+
+        } else {
+            throw new RecursoNaoEncontradoException(String.format(MSG_CLIENTE_NAO_ENCONTRADO, id));
+        }
+
+        return clienteConverter.toResponse(cliente);
     }
 
     private Cliente getClientePorId(Long id) {

@@ -2,10 +2,12 @@ package br.com.gs3.desafio.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -19,14 +21,16 @@ public class Cliente {
     private String nome;
     private String cpf;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente", orphanRemoval = true)
     private Endereco endereco;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private Set<Telefone> telefones;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente", orphanRemoval = true)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Telefone> telefones;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private Set<Email> emails;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente", orphanRemoval = true)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Email> emails;
 
     public void setCpf(String cpf) {
         this.cpf = cpf.replaceAll("[^\\d ]", "");
