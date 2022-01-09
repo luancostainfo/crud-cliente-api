@@ -6,6 +6,8 @@ import br.com.gs3.desafio.domain.model.Cliente;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -20,8 +22,8 @@ public class ClienteConverter implements RequestDisassembler<Cliente, ClienteReq
     @Override
     public Cliente toEntity(ClienteRequest request) {
 
-        var telefones = request.getTelefones().stream().map(telefoneConverter::toEntity).collect(Collectors.toList());
-        var emails = request.getEmails().stream().map(emailConverter::toEntity).collect(Collectors.toList());
+        var telefones = request.getTelefones().stream().map(telefoneConverter::toEntity).collect(Collectors.toSet());
+        var emails = request.getEmails().stream().map(emailConverter::toEntity).collect(Collectors.toSet());
         var endereco = enderecoConverter.toEntity(request.getEndereco());
 
         var cliente = new Cliente();
@@ -54,5 +56,10 @@ public class ClienteConverter implements RequestDisassembler<Cliente, ClienteReq
         clienteResponse.setEmails(emails);
 
         return clienteResponse;
+    }
+
+    @Override
+    public List<ClienteResponse> toCollectionResponse(Collection<Cliente> entities) {
+        return entities.stream().map(this::toResponse).collect(Collectors.toList());
     }
 }

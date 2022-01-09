@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -33,5 +34,10 @@ public class ClienteController {
     @GetMapping("/{id}")
     public ClienteResponse buscarPorId(@PathVariable Long id) {
         return clienteService.buscarPorId(id);
+    }
+
+    @GetMapping
+    public List<ClienteResponse> listarTodos() {
+        return clienteService.listarTodos();
     }
 }

@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,10 +23,10 @@ public class Cliente {
     private Endereco endereco;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private List<Telefone> telefones;
+    private Set<Telefone> telefones;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private List<Email> emails;
+    private Set<Email> emails;
 
     public void setCpf(String cpf) {
         this.cpf = cpf.replaceAll("[^\\d ]", "");

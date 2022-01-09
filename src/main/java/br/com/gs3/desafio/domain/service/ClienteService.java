@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class ClienteService {
@@ -32,5 +34,10 @@ public class ClienteService {
                 .orElseThrow(() -> new RecursoNaoEncontradoException(String.format(MSG_CLIENTE_NAO_ENCONTRADO, id)));
 
         return clienteConverter.toResponse(cliente);
+    }
+
+    public List<ClienteResponse> listarTodos() {
+        var clientes = clienteRepository.findAll();
+        return clienteConverter.toCollectionResponse(clientes);
     }
 }
