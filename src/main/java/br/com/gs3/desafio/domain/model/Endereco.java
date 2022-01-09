@@ -26,6 +26,14 @@ public class Endereco {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+    public void setCep(String cep) {
+        this.cep = cep.replaceAll("[^0-9]", "");
+    }
+
+    public String getCep() {
+        return cep.replaceAll("(\\d{2})(\\d{3})(\\d{3})", "$1.$2-$3");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

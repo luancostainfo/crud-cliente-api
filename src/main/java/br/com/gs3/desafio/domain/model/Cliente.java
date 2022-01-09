@@ -28,6 +28,14 @@ public class Cliente {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private List<Email> emails;
 
+    public void setCpf(String cpf) {
+        this.cpf = cpf.replaceAll("[^\\d ]", "");
+    }
+
+    public String getCpf() {
+        return this.cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
