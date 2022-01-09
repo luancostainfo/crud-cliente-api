@@ -2,6 +2,7 @@ package br.com.gs3.desafio.domain.service;
 
 import br.com.gs3.desafio.api.dto.request.ClienteRequest;
 import br.com.gs3.desafio.api.dto.response.ClienteResponse;
+import br.com.gs3.desafio.domain.model.Cliente;
 import br.com.gs3.desafio.domain.repository.ClienteRepository;
 import br.com.gs3.desafio.domain.service.converter.ClienteConverter;
 import br.com.gs3.desafio.domain.service.exception.RecursoNaoEncontradoException;
@@ -29,9 +30,7 @@ public class ClienteService {
 
     public ClienteResponse buscarPorId(Long id) {
 
-        var cliente = clienteRepository
-                .findById(id)
-                .orElseThrow(() -> new RecursoNaoEncontradoException(String.format(MSG_CLIENTE_NAO_ENCONTRADO, id)));
+        var cliente = getClientePorId(id);
 
         return clienteConverter.toResponse(cliente);
     }
@@ -39,5 +38,17 @@ public class ClienteService {
     public List<ClienteResponse> listarTodos() {
         var clientes = clienteRepository.findAll();
         return clienteConverter.toCollectionResponse(clientes);
+    }
+
+    @Transactional
+    public void deletar(Long id) {
+        var cliente = getClientePorId(id);
+        clienteRepository.delete(cliente);
+    }
+
+    private Cliente getClientePorId(Long id) {
+        return clienteRepository
+                .findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException(String.format(MSG_CLIENTE_NAO_ENCONTRADO, id)));
     }
 }

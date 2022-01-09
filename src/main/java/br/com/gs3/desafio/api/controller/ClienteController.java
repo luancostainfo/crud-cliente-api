@@ -4,6 +4,7 @@ import br.com.gs3.desafio.api.dto.request.ClienteRequest;
 import br.com.gs3.desafio.api.dto.response.ClienteResponse;
 import br.com.gs3.desafio.domain.service.ClienteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -39,5 +40,11 @@ public class ClienteController {
     @GetMapping
     public List<ClienteResponse> listarTodos() {
         return clienteService.listarTodos();
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletar(@PathVariable Long id) {
+        clienteService.deletar(id);
     }
 }
