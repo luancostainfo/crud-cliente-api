@@ -2,6 +2,7 @@ package br.com.gs3.desafio.domain.service;
 
 import br.com.gs3.desafio.api.dto.request.ClienteRequest;
 import br.com.gs3.desafio.api.dto.response.ClienteResponse;
+import br.com.gs3.desafio.api.dto.response.ClienteResumoResponse;
 import br.com.gs3.desafio.domain.model.Cliente;
 import br.com.gs3.desafio.domain.repository.ClienteRepository;
 import br.com.gs3.desafio.domain.service.converter.ClienteConverter;
@@ -36,9 +37,8 @@ public class ClienteService {
         return clienteConverter.toResponse(cliente);
     }
 
-    public List<ClienteResponse> listarTodos() {
-        var clientes = clienteRepository.findAll();
-        return clienteConverter.toCollectionResponse(clientes);
+    public List<ClienteResumoResponse> listarTodos() {
+        return clienteRepository.listarTodos();
     }
 
     @Transactional

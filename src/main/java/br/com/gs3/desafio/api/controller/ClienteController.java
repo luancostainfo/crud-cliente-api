@@ -2,6 +2,7 @@ package br.com.gs3.desafio.api.controller;
 
 import br.com.gs3.desafio.api.dto.request.ClienteRequest;
 import br.com.gs3.desafio.api.dto.response.ClienteResponse;
+import br.com.gs3.desafio.api.dto.response.ClienteResumoResponse;
 import br.com.gs3.desafio.domain.service.ClienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,7 @@ public class ClienteController {
     }
 
     @GetMapping
-    public List<ClienteResponse> listarTodos() {
+    public List<ClienteResumoResponse> listarTodos() {
         return clienteService.listarTodos();
     }
 
