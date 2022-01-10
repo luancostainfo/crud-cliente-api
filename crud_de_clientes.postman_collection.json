@@ -1,0 +1,1106 @@
+{
+	"info": {
+		"_postman_id": "3ae8b3fa-6e36-4603-b7f2-a95161835f25",
+		"name": "Crud de Clientes Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "seguranca",
+			"item": [
+				{
+					"name": "Gerar Access Token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "clientes-web",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usando Refresh Token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "clientes-web",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBnbWFpbC5jb20iLCJzY29wZSI6WyJSRUFEIiwiV1JJVEUiXSwiYXRpIjoiYmYyMTYzYTgtMjc3My00ODk4LWFiNTAtM2JiNWIxMjM1Mzc2IiwiZXhwIjoxNjI4MTY4MzMxLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DT05UQVRPIiwiUk9MRV9BTFRFUkFSX0NPTlRBVE8iLCJST0xFX0VYQ0xVSVJfQ09OVEFUTyIsIlJPTEVfVklTVUFMSVpBUl9DT05UQVRPIl0sImp0aSI6IjhjYzhlODVlLTQ2NGEtNGQyZS04YWZiLWU1ZDcwYmM4MGZlNCIsImNsaWVudF9pZCI6ImFnZW5kYS13ZWIifQ.3eWK4TBXm5URAaXxEB9zsCdybchumX9fQHABVqaoE6A",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "client",
+									"value": "agenda-web",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "clientes-web",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "localhost:8080/oauth/token",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Access Token - Password Flow",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8081/oauth/authorize",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:4200",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/tokens/revoke",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tokens",
+								"revoke"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cadastrar cliente",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "clientes-web",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "localhost:8080/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Access Token - Password Flow",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8081/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:4200",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Maria de Lourdes\",\n\t\"cpf\": \"05256556118\",\n\t\"emails\": [\n\t\t\"maria1@gmail.com\",\n\t\t\"maria2@gmail.com\"\n\t],\n\t\"telefones\": [\n\t\t{ \"tipoTelefone\": \"RESIDENCIAL\", \"numeroTelefone\": \"6133595684\" },\n\t\t{ \"tipoTelefone\": \"CELULAR\", \"numeroTelefone\": \"61982429636\" },\n\t\t{ \"tipoTelefone\": \"COMERCIAL\", \"numeroTelefone\": \"6133595685\" }\n\t],\n\t\"endereco\": {\n\t\t\"logradouro\": \"QR 223 Conjunto 05 Casa 16\",\n\t\t\"complemento\": \"Próximo a padaria Big Massas\",\n\t\t\"bairro\": \"Brasília\",\n\t\t\"cidade\": \"Brasília\",\n\t\t\"uf\": \"DF\",\n\t\t\"cep\": \"72345205\"\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/clientes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar cliente Bean Validation",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "clientes-web",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "localhost:8080/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Access Token - Password Flow",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8081/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:4200",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"\",\n\t\"cpf\": \"05256556111\",\n\t\"emails\": [\n\t],\n\t\"telefones\": [\n\t\t{ \"tipoTelefone\": \"RESIDENCIAL\", \"numeroTelefone\": \"\" },\n\t\t{ \"tipoTelefone\": \"CELULAR\", \"numeroTelefone\": \"6133595684\" },\n\t\t{ \"tipoTelefone\": \"COMERCIAL\", \"numeroTelefone\": \"6133595685\" }\n\t],\n\t\"endereco\": {\n\t\t\"logradouro\": \"\",\n\t\t\"complemento\": \"\",\n\t\t\"bairro\": \"\",\n\t\t\"cidade\": \"\",\n\t\t\"uf\": \"\",\n\t\t\"cep\": \"\"\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/clientes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar cliente por id",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "clientes-web",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "localhost:8080/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Access Token - Password Flow",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8081/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:4200",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/clientes/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar cliente por id inexistente",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "clientes-web",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "localhost:8080/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Access Token - Password Flow",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8081/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:4200",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/clientes/1000",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar clientes",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "clientes-web",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "accessToken",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjgwMzk4MDMsInVzZXJfbmFtZSI6ImFkbWluQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiOGNjZWVhN2ItMjc3My00ZjVhLWE5MjUtMGYwMTU1Y2MwNDVmIiwiY2xpZW50X2lkIjoiYWdlbmRhLXdlYiIsInNjb3BlIjpbIlJFQUQiLCJXUklURSJdfQ.WtAz62hN3uwCutA4eyiPMSYobBbtzrLV5ApfAKmn79g",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "localhost:8080/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Access Token - Password Flow",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8081/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:4200",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/clientes/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir cliente",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "clientes-web",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "localhost:8080/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Access Token - Password Flow",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8081/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:4200",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/clientes/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir cliente inexistente",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "clientes-web",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "localhost:8080/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Access Token - Password Flow",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8081/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:4200",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/clientes/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar cliente",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "clientes-web",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "localhost:8080/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Access Token - Password Flow",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8081/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:4200",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Alterado 2\",\n\t\"cpf\": \"41702379191\",\n\t\"emails\": [\n        \"alterado1@gmail.com\",\n        \"alterado2@gmail.com\",\n        \"alterado3@gmail.com\",\n        \"alterado4@gmail.com\"\n\t],\n\t\"telefones\": [\n\t\t{ \"tipoTelefone\": \"CELULAR\", \"numeroTelefone\": \"61982429636\" },\n\t\t{ \"tipoTelefone\": \"CELULAR\", \"numeroTelefone\": \"61982429637\" },\n\t\t{ \"tipoTelefone\": \"CELULAR\", \"numeroTelefone\": \"61982429638\" }\n\t],\n\t\"endereco\": {\n\t\t\"logradouro\": \"Logradouro Alterado\",\n\t\t\"complemento\": \"Complemento Alterado\",\n\t\t\"bairro\": \"Bairro Alterado\",\n\t\t\"cidade\": \"Cidade Alterado\",\n\t\t\"uf\": \"RJ\",\n\t\t\"cep\": \"72345205\"\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/clientes/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar cliente inexistente",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "clientes-web",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "localhost:8080/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Access Token - Password Flow",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8081/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:4200",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Alterado 2\",\n\t\"cpf\": \"41702379191\",\n\t\"emails\": [\n        \"alterado1@gmail.com\",\n        \"alterado2@gmail.com\",\n        \"alterado3@gmail.com\",\n        \"alterado4@gmail.com\"\n\t],\n\t\"telefones\": [\n\t\t{ \"tipoTelefone\": \"CELULAR\", \"numeroTelefone\": \"61982429636\" },\n\t\t{ \"tipoTelefone\": \"CELULAR\", \"numeroTelefone\": \"61982429637\" },\n\t\t{ \"tipoTelefone\": \"CELULAR\", \"numeroTelefone\": \"61982429638\" }\n\t],\n\t\"endereco\": {\n\t\t\"logradouro\": \"Logradouro Alterado\",\n\t\t\"complemento\": \"Complemento Alterado\",\n\t\t\"bairro\": \"Bairro Alterado\",\n\t\t\"cidade\": \"Cidade Alterado\",\n\t\t\"uf\": \"RJ\",\n\t\t\"cep\": \"72345205\"\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/clientes/1000",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
