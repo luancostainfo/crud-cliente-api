@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
+@CrossOrigin(origins = {"${settings.cors_origin}"})
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
